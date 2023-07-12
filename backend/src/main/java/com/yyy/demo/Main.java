@@ -19,6 +19,7 @@ public class Main {
         CustomerController customerController =
                 new CustomerController(customerService);*/
         SpringApplication.run(Main.class ,args);
+
     }
 
     @Bean
