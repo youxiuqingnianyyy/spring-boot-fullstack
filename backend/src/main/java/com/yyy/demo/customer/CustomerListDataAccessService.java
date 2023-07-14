@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.yyy.demo.customer.Gender.FEMALE;
+import static com.yyy.demo.customer.Gender.MALE;
+
 @Repository("list")
 public class CustomerListDataAccessService implements CustomerDao{
 
@@ -16,14 +19,16 @@ public class CustomerListDataAccessService implements CustomerDao{
         Customer alex = new Customer(
                 "Alex",
                 "alex@gmail.com",
-                21
+                21,
+                MALE
         );
         customers.add(alex);
 
         Customer Jamila = new Customer(
                 "Jamila",
                 "jamila@gmail.com",
-                19
+                19,
+                FEMALE
         );
         customers.add(Jamila);
     }

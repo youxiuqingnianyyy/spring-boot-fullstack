@@ -40,19 +40,28 @@ public class Customer {
     )
     private  Integer age;
 
+    @Column(
+            nullable = false
+    )
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+
     public Customer() {}
 
-    public Customer(Long id, String name, String email, Integer age) {
+    public Customer(Long id, String name, String email, Integer age, Gender gender) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
+        this.gender = gender;
     }
 
-    public Customer(String name, String email, Integer age) {
+    public Customer(String name, String email, Integer age, Gender gender) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.gender = gender;
     }
 
     public Long getId() {
@@ -87,26 +96,35 @@ public class Customer {
         this.age = age;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(age, customer.age);
+        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(age, customer.age) && gender == customer.gender;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, age);
+        return Objects.hash(id, name, email, age, gender);
     }
 
     @Override
     public String toString() {
-        return "customer{" +
+        return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
+                ", gender=" + gender +
                 '}';
     }
 }

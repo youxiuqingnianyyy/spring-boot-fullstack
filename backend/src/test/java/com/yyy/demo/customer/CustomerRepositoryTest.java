@@ -36,7 +36,8 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
+                20,
+                Gender.MALE
         );
         underTest.save(customer);
         // Get the email
@@ -72,7 +73,8 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
+                20,
+                Gender.MALE
         );
         underTest.save(customer);
         // Get the id
@@ -87,7 +89,7 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
 
         // Then
         assertThat(actual).isTrue();
-    };
+    }
 
     @Test
     void existsCustomerByIdFailsWhenIdNotPresent() {
@@ -99,5 +101,5 @@ class CustomerRepositoryTest extends AbstractTestcontainers {
 
         // Then
         assertThat(actual).isFalse();
-    };
+    }
 }
