@@ -17,7 +17,7 @@ services:
     container_name: yyy-api
     image: yxqnyyy/yyy-api
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/customer"
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
     ports:
       - "8088:8080"
     networks:
@@ -25,6 +25,23 @@ services:
     depends_on:
       - db
     restart: unless-stopped
+  yyy-web:
+    restart: unless-stopped
+    container_name: yyy-web
+    image: yxqnyyy/yyy-web
+    depends_on:
+      - yyy-api
+    links:
+      - yyy-api
+    build:
+      context: ../../Frontend/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8089:80"
+    networks:
+      - db
+    volumes:
+      - ../../Frontend/frontend/conf.d:/etc/nginx/conf.d
 networks:
   db:
     driver: bridge
